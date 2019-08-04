@@ -17,14 +17,14 @@ namespace sistem_sales_and_shopping.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Salles web MVC app from C#";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Wellington Henrique Moreira Vitorino";
 
             return View();
         }
