@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using sistem_sales_and_shopping.Models;
 
 namespace sistem_sales_and_shopping
 {
@@ -33,6 +35,9 @@ namespace sistem_sales_and_shopping
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<sistem_sales_and_shoppingContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("sistem_sales_and_shoppingContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
