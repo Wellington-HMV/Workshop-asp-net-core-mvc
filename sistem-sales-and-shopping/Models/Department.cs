@@ -1,4 +1,4 @@
-﻿namespace sistem_sales_and_shopping.Models
+﻿namespace system_sales_and_shopping.Models
 {
     public class Department
     {

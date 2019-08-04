@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using sistem_sales_and_shopping.Models;
+using system_sales_and_shopping.Models;
 
-namespace sistem_sales_and_shopping.Controllers
+namespace system_sales_and_shopping.Controllers
 {
     public class DepartmentsController : Controller
     {
-        private readonly sistem_sales_and_shoppingContext _context;
+        private readonly system_sales_and_shoppingContext _context;
 
-        public DepartmentsController(sistem_sales_and_shoppingContext context)
+        public DepartmentsController(system_sales_and_shoppingContext context)
         {
             _context = context;
         }

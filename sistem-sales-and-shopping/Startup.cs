@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using sistem_sales_and_shopping.Models;
+using system_sales_and_shopping.Models;
 
-namespace sistem_sales_and_shopping
+namespace system_sales_and_shopping
 {
     public class Startup
     {
@@ -36,8 +36,9 @@ namespace sistem_sales_and_shopping
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<sistem_sales_and_shoppingContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("sistem_sales_and_shoppingContext")));
+            services.AddDbContext<system_sales_and_shoppingContext>(options =>
+                    options.UseMySql(Configuration.GetConnectionString("system_sales_and_shoppingContext"),//nome do context
+                    builder => builder.MigrationsAssembly("system_sales_and_shopping")));//nome do projeto
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

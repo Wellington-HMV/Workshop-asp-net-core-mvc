@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using sistem_sales_and_shopping.Models.ViewModels;
+using system_sales_and_shopping.Models.ViewModels;
 
-namespace sistem_sales_and_shopping.Controllers
+namespace system_sales_and_shopping.Controllers
 {
     public class HomeController : Controller
     {

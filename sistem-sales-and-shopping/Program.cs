@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace sistem_sales_and_shopping
+namespace system_sales_and_shopping
 {
     public class Program
     {
