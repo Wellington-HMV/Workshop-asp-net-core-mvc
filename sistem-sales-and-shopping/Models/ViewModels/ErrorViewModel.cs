@@ -1,6 +1,6 @@
 using System;
 
-namespace sistem_sales_and_shopping.Models
+namespace sistem_sales_and_shopping.Models.ViewModels
 {
     public class ErrorViewModel
     {

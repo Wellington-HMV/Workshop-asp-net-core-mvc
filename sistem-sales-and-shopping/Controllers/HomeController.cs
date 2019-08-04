@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using sistem_sales_and_shopping.Models;
+using sistem_sales_and_shopping.Models.ViewModels;
 
 namespace sistem_sales_and_shopping.Controllers
 {
