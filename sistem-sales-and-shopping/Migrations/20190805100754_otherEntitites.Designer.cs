@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using system_sales_and_shopping.Models;
 
 namespace system_sales_and_shopping.Migrations
 {
     [DbContext(typeof(system_sales_and_shoppingContext))]
-    partial class system_sales_and_shoppingContextModelSnapshot : ModelSnapshot
+    [Migration("20190805100754_otherEntitites")]
+    partial class otherEntitites
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

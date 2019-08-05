@@ -13,6 +13,8 @@ namespace system_sales_and_shopping.Models
         {
         }
 
-        public DbSet<system_sales_and_shopping.Models.Department> Department { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<Seller> Seller { get; set; }
+        public DbSet<SalesRecord> SalesRecord { get; set; }
     }
 }
