@@ -43,6 +43,7 @@ namespace system_sales_and_shopping
                     builder => builder.MigrationsAssembly("system_sales_and_shopping")));//nome do projeto
             services.AddScoped<SeedingService>(); //registra serviço de independencia da aplicação do seeding
             services.AddScoped<SellerService>();//dependencia da classe service possibilitando para ser injetado em outras classes
+            services.AddScoped<DepartmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

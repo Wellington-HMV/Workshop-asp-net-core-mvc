@@ -5,15 +5,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using system_sales_and_shopping.Models;
+using system_sales_and_shopping.Models.ViewModels;
 
 namespace system_sales_and_shopping.Controllers
 {
     public class SellersController : Controller
     {
         private readonly SellerService _sellerService;
-        public SellersController(SellerService sellerService)
+        private readonly DepartmentService _departmentService;
+        public SellersController(SellerService sellerService, DepartmentService departmentService)
         {
             _sellerService = sellerService; // injeção de dependencia
+            _departmentService = departmentService;
         }
         public IActionResult Index() // controlador
         {
@@ -22,7 +25,9 @@ namespace system_sales_and_shopping.Controllers
         }
         public IActionResult Create()
         {
-            return View();
+            var departments = _departmentService.FindAll();
+            var viewModel = new SellerFormViewModel { Departments = departments };
+            return View(viewModel);
         }
         [HttpPost]//indicando que o metodo é post
         [ValidateAntiForgeryToken]//prevenção de ataque CSRF
