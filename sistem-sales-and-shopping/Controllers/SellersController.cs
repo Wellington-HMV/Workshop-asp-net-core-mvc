@@ -1,4 +1,5 @@
 ﻿using System;
+using system_sales_and_shopping.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,9 +9,15 @@ namespace system_sales_and_shopping.Controllers
 {
     public class SellersController : Controller
     {
-        public IActionResult Index()
+        private readonly SellerService _sellerService;
+        public SellersController(SellerService sellerService)
         {
-            return View();
+            _sellerService = sellerService; // injeção de dependencia
+        }
+        public IActionResult Index() // controlador
+        {
+            var list = _sellerService.FindAll();//model
+            return View(list);//view
         }
     }
 }
