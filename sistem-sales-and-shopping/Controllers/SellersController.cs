@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using system_sales_and_shopping.Models;
 using system_sales_and_shopping.Models.ViewModels;
+using system_sales_and_shopping.Services.Exception;
 
 namespace system_sales_and_shopping.Controllers
 {
@@ -36,14 +37,14 @@ namespace system_sales_and_shopping.Controllers
             _sellerService.Insert(seller);
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult Delete(int ? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
             var obj = _sellerService.FindById(id.Value);
-            if(obj == null)
+            if (obj == null)
             {
                 return NotFound();
             }
@@ -55,6 +56,55 @@ namespace system_sales_and_shopping.Controllers
         {
             _sellerService.Remove(id);
             return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _sellerService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _sellerService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            List<Department> departmens = _departmentService.FindAll();
+            SellerFormViewModel viewModel = new SellerFormViewModel { Seller = obj, Departments = departmens };
+            return View(viewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Seller seller)
+        {
+            if (id != seller.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _sellerService.Update(seller);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch(DbConcurrencyException){
+                return BadRequest();
+            }
         }
     }
 }
