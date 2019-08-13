@@ -33,7 +33,7 @@ namespace system_sales_and_shopping.Controllers
         }
         [HttpPost]//indicando que o metodo é post
         [ValidateAntiForgeryToken]//prevenção de ataque CSRF
-        public async Task<IActionResult> Create(Seller seller)
+        public async Task <IActionResult> Create(Seller seller)
         {
             if (!ModelState.IsValid)
             {
@@ -61,8 +61,15 @@ namespace system_sales_and_shopping.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            await _sellerService.RemoveAsync(id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await _sellerService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (IntegrityException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
         public async Task <IActionResult> Details(int? id)
         {
