@@ -46,6 +46,7 @@ namespace system_sales_and_shopping
             services.AddScoped<SeedingService>(); //registra serviço de independencia da aplicação do seeding
             services.AddScoped<SellerService>();//dependencia da classe service possibilitando para ser injetado em outras classes
             services.AddScoped<DepartmentService>();
+            services.AddScoped<SalesRecordService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
