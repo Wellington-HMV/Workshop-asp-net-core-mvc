@@ -1,6 +1,8 @@
 ﻿using system_sales_and_shopping.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace system_sales_and_shopping.Services
 {
@@ -11,9 +13,9 @@ namespace system_sales_and_shopping.Services
         {
             _context = context;
         }
-        public List<Department> FindAll()
+        public async Task<List<Department>> FindAllAsync()//incluindo o task para que seja implementado de foima assicrona
         {
-            return _context.Department.OrderBy(x => x.Name).ToList();
+            return  await _context.Department.OrderBy(x => x.Name).ToListAsync();//await para avisa o compilador que é uma chamada asincrona
         }
     }
 }

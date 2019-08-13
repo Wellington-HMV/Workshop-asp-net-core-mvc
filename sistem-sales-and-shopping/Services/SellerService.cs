@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using system_sales_and_shopping.Models;
 using system_sales_and_shopping.Services.Exception;
+using Microsoft.EntityFrameworkCore;
 
 namespace system_sales_and_shopping.Services
 {
@@ -14,36 +15,38 @@ namespace system_sales_and_shopping.Services
         {
             _context = context;
         }
-        public List<Seller> FindAll()
-        {
-            return _context.Seller.ToList();
+        public async Task<List<Seller>> FindAllAsync()//transformando a operação em assincrona que neste caso ela espera para ser executada
+        {                                             //aumentando a performace da aplicação
+            return await _context.Seller.ToListAsync();
         }
-        public void Insert(Seller obj)
+        public async Task InsertAsync(Seller obj)
         {
             _context.Add(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
-        public Seller FindById (int id)
+        public async Task<Seller> FindByIdAsync(int id)
         {
-            return _context.Seller.FirstOrDefault(obj => obj.Id == id);
+            return await _context.Seller.FirstOrDefaultAsync(obj => obj.Id == id);
         }
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            var obj = _context.Seller.Find(id);
+            var obj = await _context.Seller.FindAsync(id);
             _context.Seller.Remove(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
-        public void Update(Seller obj)
+        public async Task UpdateAsync(Seller obj)
         {
-            if (!_context.Seller.Any(x => x.Id == obj.Id))
+            bool hasany = await _context.Seller.AnyAsync(x => x.Id == obj.Id);
+            if (!hasany)
             {
                 throw new NotFoundException("Id not found!");
             }
             try
             {
                 _context.Update(obj);
-                _context.SaveChanges();
-            }catch(DbConcurrencyException e)
+                await _context.SaveChangesAsync();
+            }
+            catch (DbConcurrencyException e)
             {
                 throw new DbConcurrencyException(e.Message);
             }
