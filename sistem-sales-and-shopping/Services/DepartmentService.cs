@@ -13,7 +13,7 @@ namespace system_sales_and_shopping.Services
         {
             _context = context;
         }
-        public async Task<List<Department>> FindAllAsync()//incluindo o task para que seja implementado de foima assicrona
+        public async Task<List<Department>> FindAllAsync()//incluindo o task para que seja implementado de forma assicrona
         {
             return  await _context.Department.OrderBy(x => x.Name).ToListAsync();//await para avisa o compilador que é uma chamada asincrona
         }
